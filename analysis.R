@@ -1,5 +1,6 @@
 library(dplyr)
 library(ggplot2)
+library(tidyr)
 
 ## merge data frames
 
@@ -32,3 +33,19 @@ ggplot(data = H_entropy, aes(x = factor(season, level = seasons), y = entropy)) 
   scale_x_discrete(breaks = c("00/01", "05/06", "10/11", "15/16", "20/21")) +
   xlab("Season") +
   ylab("Relative entropy")
+
+
+
+# Load the library
+library("lattice")
+
+# Dummy data
+data <- matrix(runif(100, 0, 5) , 10 , 10)
+colnames(data) <- letters[c(1:10)]
+rownames(data) <- paste( rep("row",10) , c(1:10) , sep=" ")
+
+# plot it flipping the axis
+levelplot( t(data[c(nrow(data):1) , ]),
+           col.regions=heat.colors(100))
+
+

@@ -513,6 +513,45 @@ ssn19_20 <- scrapedData2019and2020 %>%  as.data.frame() %>%  select(c(`Gole Gosp
 ssn20_21 <- scrapedData2020and2021 %>%  as.data.frame() %>%  select(c(`Gole Gospodarz`, `Gole Gość`, `Gospodarz`, `Gość`, `Wynik`))
 ssn21_22 <- scrapedData2021and2022 %>%  as.data.frame() %>%  select(c(`Gole Gospodarz`, `Gole Gość`, `Gospodarz`, `Gość`, `Wynik`))
 
+
+colnames(ssn12_13) <- colnames(ssn00_01)
+rownames(ssn12_13) <- 1:nrow(ssn12_13)
+
+colnames(ssn13_14) <- colnames(ssn00_01)
+rownames(ssn13_14) <- 1:nrow(ssn13_14)
+
+colnames(ssn14_15) <- colnames(ssn00_01)
+rownames(ssn14_15) <- 1:nrow(ssn14_15)
+
+colnames(ssn15_16) <- colnames(ssn00_01)
+rownames(ssn15_16) <- 1:nrow(ssn15_16)
+
+colnames(ssn16_17) <- colnames(ssn00_01)
+rownames(ssn16_17) <- 1:nrow(ssn16_17)
+
+colnames(ssn17_18) <- colnames(ssn00_01)
+rownames(ssn17_18) <- 1:nrow(ssn17_18)
+
+colnames(ssn18_19) <- colnames(ssn00_01)
+rownames(ssn18_19) <- 1:nrow(ssn18_19)
+
+colnames(ssn19_20) <- colnames(ssn00_01)
+rownames(ssn19_20) <- 1:nrow(ssn19_20)
+
+colnames(ssn20_21) <- colnames(ssn00_01)
+rownames(ssn20_21) <- 1:nrow(ssn20_21)
+
+colnames(ssn21_22) <- colnames(ssn00_01)
+rownames(ssn21_22) <- 1:nrow(ssn21_22)
+
+ssn00_01 <- ssn00_01[-1:-2,]
+ssn01_02 <- ssn01_02[-1:-4, ]
+ssn02_03 <- ssn02_03[-1:-4, ]
+ssn03_04 <- ssn03_04[-1:-2, ]
+ssn04_05 <- ssn04_05[-1:-2, ]
+ssn05_06 <- ssn05_06[-1:-2, ]
+
+
 save(ssn98_99,
      ssn99_00,
      ssn00_01,
@@ -525,9 +564,9 @@ save(ssn98_99,
      ssn07_08,
      ssn08_09,
      ssn09_10,
-    ssn10_11,
+     ssn10_11,
      ssn11_12,
-    ssn12_13,
+     ssn12_13,
      ssn13_14,
      ssn14_15,
      ssn15_16,
@@ -536,7 +575,7 @@ save(ssn98_99,
      ssn18_19,
      ssn19_20,
      ssn20_21,
-    ssn21_22, file = "ssn.Rdata")
+     ssn21_22, file = "ssn.Rdata")
 
 
 
