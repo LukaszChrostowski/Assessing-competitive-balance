@@ -500,6 +500,40 @@ ssn11_12 <- data.frame(home = home,
                        away_teams = away_teams,
                        result = result)
 
+#12/13
+url <- "https://www.wyniki.pl/pko-bp-ekstraklasa-2012-2013/wyniki/"
+
+remDr$navigate(url)
+# click on cookies info:
+#cookies <- remDr$findElement(using = "xpath", '//*[@id="onetrust-reject-all-handler"]')
+#cookies$clickElement()
+# click on more info:
+# get urls to match statistics
+more_games <- remDr$findElement(using = "link text", "Pokaż więcej meczów")
+more_games$clickElement()
+more_games$clickElement()
+
+home <- remDr$findElements(using = "class", "event__score--home")
+home <- lapply(home, function(x) x$getElementText() %>% unlist()) %>% unlist() %>% as.numeric()
+
+away <- remDr$findElements(using = "class", "event__score--away")
+away <- lapply(away, function(x) x$getElementText() %>% unlist()) %>% unlist() %>% as.numeric()
+
+home_teams <- remDr$findElements(using = "class", "event__participant--home")
+home_teams <- lapply(home_teams, function(x) x$getElementText() %>% unlist()) %>% unlist()
+
+away_teams <- remDr$findElements(using = "class", "event__participant--away")
+away_teams <- lapply(away_teams, function(x) x$getElementText() %>% unlist()) %>% unlist()
+
+result <- ifelse(home > away, "H", ifelse(away > home, "A", "D"))
+
+
+ssn12_13 <- data.frame(home = home,
+                       away = away,
+                       home_teams = home_teams,
+                       away_teams = away_teams,
+                       result = result)
+
 #### saving files
 
 ssn12_13 <- scrapedData2012and2013%>%  as.data.frame() %>%  select(c(`Gole Gospodarz`, `Gole Gość`, `Gospodarz`, `Gość`, `Wynik`))
