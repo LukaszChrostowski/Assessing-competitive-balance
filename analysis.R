@@ -20,7 +20,6 @@ H_entropy <- rbind(dff, dfff)
 seasons <- c("98/99", "99/00", "00/01", "02/03", "03/04", "04/05", "05/06", "06/07",
              "07/08", "08/09", "09/10", "10/11", "11/12", "12/13", "13/14", "14/15",
              "15/16", "16/17", "17/18", "18/19", "19/20", "20/21", "21/22")
-                                                                                                                          entropy = sum(sum_points* log(sum_points))/log(1/n()))
 
 ggplot(data = H_entropy, aes(x = factor(season, level = seasons), y = hhicb)) +
   geom_point() +
@@ -34,18 +33,5 @@ ggplot(data = H_entropy, aes(x = factor(season, level = seasons), y = entropy)) 
   xlab("Season") +
   ylab("Relative entropy")
 
-
-
-# Load the library
-library("lattice")
-
-# Dummy data
-data <- matrix(runif(100, 0, 5) , 10 , 10)
-colnames(data) <- letters[c(1:10)]
-rownames(data) <- paste( rep("row",10) , c(1:10) , sep=" ")
-
-# plot it flipping the axis
-levelplot( t(data[c(nrow(data):1) , ]),
-           col.regions=heat.colors(100))
 
 

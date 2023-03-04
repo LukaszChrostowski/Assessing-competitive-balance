@@ -45,9 +45,3 @@ for (df in A) {
   B <- list.append(B, final_table)
 
 }
-
-for (i in 1:length(B)){
-
-  View(B[[i]])
-
-}
