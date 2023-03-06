@@ -2,18 +2,6 @@ library(rlist)
 library(dplyr)
 library(tidyr)
 
-cleaningFun <- function(data) {
-
-  data$home <- data$home %>% as.numeric()
-  data$away <- data$away %>% as.numeric()
-  A <- data %>% group_by(home_teams, away_teams) %>% mutate(n = n()) %>%  filter(n==2) %>% summarise(across(c(home, away), sum))#%>% filter(n==2)
-  B <- data %>% group_by(home_teams, away_teams) %>% mutate(n = n()) %>% filter(n==1)
-  cleanedData <- rbind(A, B) %>% select(-n) %>% mutate(result = ifelse(home > away, "H", ifelse(away > home, "A", "D")))
-  cleanedData
-
-}
-
-
 ssn01_02 <- cleaningFun(ssn01_02)
 ssn13_14 <- cleaningFun(ssn13_14)
 ssn14_15 <- cleaningFun(ssn14_15)
@@ -45,3 +33,59 @@ for (df in A) {
   B <- list.append(B, final_table)
 
 }
+
+ContTable_9899 <- B[[1]]
+ContTable_9900 <- B[[2]]
+ContTable_0001 <- B[[3]]
+ContTable_0102 <- B[[4]]
+ContTable_0203 <- B[[5]]
+ContTable_0304 <- B[[6]]
+ContTable_0405 <- B[[7]]
+ContTable_0506 <- B[[8]]
+ContTable_0607 <- B[[9]]
+ContTable_0708 <- B[[10]]
+ContTable_0809 <- B[[11]]
+ContTable_0910 <- B[[12]]
+ContTable_1011 <- B[[13]]
+ContTable_1112 <- B[[14]]
+ContTable_1213 <- B[[15]]
+ContTable_1314 <- B[[16]]
+ContTable_1415 <- B[[17]]
+ContTable_1516 <- B[[18]]
+ContTable_1617 <- B[[19]]
+ContTable_1718 <- B[[20]]
+ContTable_1819 <- B[[21]]
+ContTable_1920 <- B[[22]]
+ContTable_2021 <- B[[23]]
+ContTable_2122 <- B[[24]]
+
+save(ContTable_9899,
+     ContTable_9900,
+     ContTable_0001,
+     ContTable_0102,
+     ContTable_0203,
+     ContTable_0304,
+     ContTable_0405,
+     ContTable_0506,
+     ContTable_0607,
+     ContTable_0708,
+     ContTable_0809,
+     ContTable_0910,
+     ContTable_1011,
+     ContTable_1112,
+     ContTable_1213,
+     ContTable_1314,
+     ContTable_1415,
+     ContTable_1516,
+     ContTable_1617,
+     ContTable_1718,
+     ContTable_1819,
+     ContTable_1920,
+     ContTable_2021,
+     ContTable_2122,
+     file = "contTables.Rdata")
+
+
+
+
+

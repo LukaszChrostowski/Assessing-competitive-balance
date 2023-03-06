@@ -611,6 +611,8 @@ save(ssn98_99,
      ssn20_21,
      ssn21_22, file = "ssn.Rdata")
 
+save(ssn12_13, file = "ssn12_13.Rdata")
+
 
 
 

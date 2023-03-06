@@ -1,6 +1,7 @@
 library(dplyr)
 library(ggplot2)
 library(tidyr)
+library(lattice)
 
 ## merge data frames
 
@@ -9,7 +10,7 @@ library(tidyr)
 ## without season 01/02 because of different league structure - to consider how to solve it
 
 
-DFF$season <- as.factor(DFF$season)
+DFF$season <- as.factor(DFF$season) # DFF is dataframe from standings_table.Rdata in data directory
 comp_bal_df1 <- DFF %>% group_by(season) %>% summarise(sum_points = points/sum(points)) %>% as.data.frame()
 comp_bal_df1 <- comp_bal_df1 %>% group_by(season) %>% summarise(hhicb = n() * sum(sum_points^2),
                                                                 entropy = sum(sum_points * log(sum_points))/log(1/n()))
@@ -25,13 +26,18 @@ ggplot(data = H_entropy, aes(x = factor(season, level = seasons), y = hhicb)) +
   geom_point() +
   scale_x_discrete(breaks = c("00/01", "05/06", "10/11", "15/16", "20/21")) +
   xlab("Season") +
-  ylab("HHICB")
+  ylab("HHICB") +
+  ggtitle("HHICB statistic for assesing competitive balance")
 
 ggplot(data = H_entropy, aes(x = factor(season, level = seasons), y = entropy)) +
   geom_point() +
   scale_x_discrete(breaks = c("00/01", "05/06", "10/11", "15/16", "20/21")) +
   xlab("Season") +
-  ylab("Relative entropy")
+  ylab("Relative entropy") +
+  ggtitle("Entropy statistic for assesing competitive balance")
 
 
 
+# example of using
+levelplotFun(ConvFun(ContTable_1920))
+levelplotFun(ConvFun(ContTable_2122))
