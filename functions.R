@@ -1,4 +1,4 @@
-# Internal funcion using during the cleaning and data analysis
+# Internal functions using during the cleaning and data analysis
 
 cleaningFun <- function(data) {
 

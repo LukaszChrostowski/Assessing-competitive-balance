@@ -11,8 +11,6 @@ ssn17_18 <- cleaningFun(ssn17_18)
 ssn18_19 <- cleaningFun(ssn18_19)
 ssn19_20 <- cleaningFun(ssn19_20)
 
-
-
 A <- list(ssn98_99, ssn99_00,ssn00_01, ssn01_02, ssn02_03, ssn03_04, ssn04_05, ssn05_06, ssn06_07, ssn07_08,
           ssn08_09, ssn09_10, ssn10_11, ssn11_12, ssn12_13, ssn13_14, ssn14_15, ssn15_16,
           ssn16_17, ssn17_18, ssn18_19, ssn19_20, ssn20_21, ssn21_22)
