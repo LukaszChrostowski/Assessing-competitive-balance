@@ -83,7 +83,3 @@ save(ContTable_9899,
      ContTable_2122,
      file = "contTables.Rdata")
 
-
-
-
-
