@@ -5,9 +5,14 @@ library(netstat)
 
 # start the server
 
-rs_driver_object <- rsDriver(browser = 'chrome',
-                             chromever = "106.0.5249.21",
-                             verbose = FALSE,
+# rs_driver_object <- rsDriver(browser = 'chrome',
+#                              chromever = "106.0.5249.21",
+#                              verbose = FALSE,
+#                              port = free_port())
+
+rs_driver_object <- rsDriver(browser = "firefox",
+                             #verbose = FALSE,
+                             #chromever = "131.0.6778.265", # the lastest
                              port = free_port())
 
 # create a client object
@@ -29,7 +34,10 @@ urls <- list("https://www.wyniki.pl/pko-bp-ekstraklasa-2011-2012/#/zXrc8SIB/tabl
              "https://www.wyniki.pl/pko-bp-ekstraklasa-2018-2019/#/dhoVcL5r/table/overall",
              "https://www.wyniki.pl/pko-bp-ekstraklasa-2019-2020/#/v5p2SRke/table/overall",
              "https://www.wyniki.pl/pko-bp-ekstraklasa-2020-2021/#/0YeuAKmU/table/overall",
-             "https://www.wyniki.pl/pko-bp-ekstraklasa-2021-2022/#/noYKsAu8/table/overall")
+             "https://www.wyniki.pl/pko-bp-ekstraklasa-2021-2022/#/noYKsAu8/table/overall",
+             "https://www.wyniki.pl/pko-bp-ekstraklasa-2022-2023/#/4fofM1vn/table/overall",
+             "https://www.wyniki.pl/pko-bp-ekstraklasa-2023-2024/#/EsvRI4zf/table/overall",
+             "https://www.wyniki.pl/pko-bp-ekstraklasa/#/Qu6CIhxL/table/overall") # current one
 
 
 ### manually ###
@@ -317,6 +325,80 @@ df_21_22$season <- rep("21/22", nrow(df_21_22))
 
 #22/23
 
+remDr$navigate(urls[[12]])
+
+#cookies <- remDr$findElement(using = "xpath", '//*[@id="onetrust-reject-all-handler"]')
+#cookies$clickElement()
+
+Tabela <- remDr$findElement(using = 'class', 'standings_table')
+Tabela$clickElement()
+
+miejsce <- remDr$findElements(using = "class", "tableCellRank")
+miejsca <- lapply(miejsce, function(x) x$getElementText()) %>% unlist()
+
+Teams <- remDr$findElements(using = "class", "tableCellParticipant__name")
+Team <- lapply(Teams, function(x) x$getElementText()) %>% unlist()
+
+Points <- remDr$findElements(using = "class", "table__cell--points")
+Points <- lapply(Points, function(x) x$getElementText()) %>% unlist()
+Points <- as.numeric(Points[-1])
+
+df_22_23 <- data.frame(team = Team, place = miejsca, points = Points)
+
+df_22_23$place <- df_22_23$place %>% str_replace_all("[.]", "") %>% as.numeric()
+df_22_23$season <- rep("22/23", nrow(df_22_23))
+
+# 23/24
+
+remDr$navigate(urls[[13]])
+
+#cookies <- remDr$findElement(using = "xpath", '//*[@id="onetrust-reject-all-handler"]')
+#cookies$clickElement()
+
+Tabela <- remDr$findElement(using = 'class', 'standings_table')
+Tabela$clickElement()
+
+miejsce <- remDr$findElements(using = "class", "tableCellRank")
+miejsca <- lapply(miejsce, function(x) x$getElementText()) %>% unlist()
+
+Teams <- remDr$findElements(using = "class", "tableCellParticipant__name")
+Team <- lapply(Teams, function(x) x$getElementText()) %>% unlist()
+
+Points <- remDr$findElements(using = "class", "table__cell--points")
+Points <- lapply(Points, function(x) x$getElementText()) %>% unlist()
+Points <- as.numeric(Points[-1])
+
+df_23_24 <- data.frame(team = Team, place = miejsca, points = Points)
+
+df_23_24$place <- df_23_24$place %>% str_replace_all("[.]", "") %>% as.numeric()
+df_23_24$season <- rep("23/24", nrow(df_23_24))
+
+# 24/25
+
+remDr$navigate(urls[[14]])
+
+#cookies <- remDr$findElement(using = "xpath", '//*[@id="onetrust-reject-all-handler"]')
+#cookies$clickElement()
+
+Tabela <- remDr$findElement(using = 'class', 'standings_table')
+Tabela$clickElement()
+
+miejsce <- remDr$findElements(using = "class", "tableCellRank")
+miejsca <- lapply(miejsce, function(x) x$getElementText()) %>% unlist()
+
+Teams <- remDr$findElements(using = "class", "tableCellParticipant__name")
+Team <- lapply(Teams, function(x) x$getElementText()) %>% unlist()
+
+Points <- remDr$findElements(using = "class", "table__cell--points")
+Points <- lapply(Points, function(x) x$getElementText()) %>% unlist()
+Points <- as.numeric(Points[-1])
+
+df_24_25 <- data.frame(team = Team, place = miejsca, points = Points)
+
+df_24_25$place <- df_24_25$place %>% str_replace_all("[.]", "") %>% as.numeric()
+df_24_25$season <- rep("24/25", nrow(df_24_25))
+
+
 # Save multiple objects
 save(df_11_12,
      df_12_13,
@@ -328,6 +410,10 @@ save(df_11_12,
      df_18_19,
      df_19_20,
      df_20_21,
+     df_21_22,
+     df_22_23,
+     df_23_24,
+     df_24_25,
      file = "standings_tables.RData")
 
 # To load the data again

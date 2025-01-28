@@ -17,6 +17,23 @@ execute:
 
 ```{r, message=FALSE, include=FALSE}
 source("MCMC_main.R")
+## Choose Premier Season
+season<-"1112"
+O <- ConvFun(ContTable_1112)
+N <- nrow(O)
+y <- to_adjacency(O)
+```
+
+```{r, message=FALSE, include=FALSE}
+objj <- mcmc(season = season, N = N, y = y, O = O)
+Final_O <- objj$Final_O
+O <- objj$O
+season_lab <- objj$season_lab
+Noisy_True_K <- objj$Noisy_True_K
+K_maxmax <- objj$K_maxmax
+how_many_top <- objj$how_many_top
+N <- objj$N
+K_estimated <- objj$K_estimated
 ```
 
 ```{r}
@@ -34,10 +51,6 @@ plot(Noisy_True_K, col="#00000033",ylab="K", xlab=" ", cex.lab=1.7,
 ```
 
 ```{r}
-Ordered_Tabellone
-```
-
-```{r}
 if (K_estimated>1){
 levelplot(t(Final_O[nrow(Final_O):1,]),
           col.regions=palf(100), xlab = NULL, ylab = NULL, colorkey = FALSE,
@@ -46,7 +59,7 @@ levelplot(t(Final_O[nrow(Final_O):1,]),
           scales = list(list(alternating=1), x=list(cex=1),y=list(cex=0.8)),
           panel = function(...){
             panel.levelplot(...)
-            panel.abline(h = (20-how_many_top)+0.5, lw = 2.5)
+            panel.abline(h = (N-how_many_top)+0.5, lw = 2.5)
             panel.abline(v = how_many_top+0.5, lw =2.5)
           })
 }

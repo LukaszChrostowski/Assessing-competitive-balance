@@ -14,13 +14,13 @@ execute:
   warning: false
   message: false
 ---
+
 ```{r}
 library(dplyr)
 library(ggplot2)
 library(tidyr)
 library(lattice)
 ```
-
 
 ```{r}
 ## merge data frames
@@ -53,7 +53,6 @@ ggplot(data = H_entropy, aes(x = factor(season, level = seasons), y = hhicb)) +
   ggtitle("HHICB statistic for assesing competitive balance")
 ```
 
-
 ```{r}
 ggplot(data = H_entropy, aes(x = factor(season, level = seasons), y = entropy)) +
   geom_point() +
@@ -63,5 +62,3 @@ ggplot(data = H_entropy, aes(x = factor(season, level = seasons), y = entropy)) 
   ggtitle("Entropy statistic for assesing competitive balance")
 
 ```
-
-

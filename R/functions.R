@@ -39,7 +39,7 @@ levelplotFun <- function(data){
 }
 
 #Function for the adjacency matrix from O
-to_adjacency<-function(O_matrix){
+to_adjacency<-function(O_matrix, N){
   N_nodes=dim(O_matrix)[1]
   adja_y=array(data=NA, dim=c(N,N,3))
   for(i in 1:N_nodes){

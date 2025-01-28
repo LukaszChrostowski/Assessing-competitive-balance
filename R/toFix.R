@@ -1,10 +1,17 @@
 ####################################################################################
 ## MODELS SEPARATION AFTER LABEL SWITCH
-
+O <- ConvFun(ContTable_1920)
+N <- nrow(O)
+y <- to_adjacency(O, N)
+model <- mcmc(season = "1920", N = N, y = y, O = O)
+Z_seq_burned <- model$Z_seq_burned
+SS <- dim(Z_seq_burned)[1]
+Knumb <- rep(max(model$K_seq), SS)
 # timing the algorithm
 start_time_undo <- Sys.time()
+# unlist(apply(Z_seq_burned, 1, function(x) length(unique(x))))
 # object output
-Undone_Z_results<-collpcm::collpcm.undo.label.switching(Z=Z_seq_burned, Gsamp=Knumb) #to fix
+Undone_Z_results <- collpcm.undo.label.switching(Z_seq_burned, Knumb) #to fix
 end_time_undo <- Sys.time()
 end_time_undo-start_time_undo
 
@@ -127,3 +134,27 @@ for (kk in 2:K_max_seq){
   dev.off()
 }
 ################
+
+# FUNCTION FROM MCMC_main.R
+# VISUALIZE AND SAVE PERMUTED MATCH GRID AFTER ESTIMATING K AND Z
+#################################################################################### available after fix toFix.R
+if (K_estimated>1){
+  Winner_label = Team_Names[rownames(Ordered_Tabellone)[1],][1]
+  # select cluster percentages
+  Cluster_percentages = get(paste0("Cluster_Percentages_Model",
+                                   K_estimated))
+
+  Top_block = as.numeric(which.max(Cluster_percentages[,Winner_label]))
+
+  # Team is in topblock if the posterior allocation is >=0.5
+  Top_block_Teams = as.numeric(which(Cluster_percentages[Top_block,]>50))
+  how_many_top = length(Top_block_Teams)
+
+  all = 1:(dim(O)[1])
+  the_others <- all[!all %in% Top_block_Teams]
+
+  new_block_order = c(Top_block_Teams, the_others)
+  Reordered_O = O[new_block_order,]
+  Final_O = Reordered_O[,new_block_order]
+}
+

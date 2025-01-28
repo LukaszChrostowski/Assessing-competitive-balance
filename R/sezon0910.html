@@ -2637,40 +2637,18 @@ vertical-align: -.125em;
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Ordered_Tabellone</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                      [,1]
-Śląsk Wrocław           56
-Ruch Chorzów            55
-Legia Warszawa          53
-Lech Poznań             52
-Korona Kielce           48
-Polonia Warszawa        45
-Wisła Kraków            43
-Górnik Zabrze           42
-Zagłębie Lubin          40
-Jagiellonia Białystok   39
-Widzew Łódź             39
-Podbeskidzie B-B        35
-GKS Bełchatów           31
-Lechia Gdańsk           31
-ŁKS Łódź                24
-Cracovia                22</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (K_estimated<span class="sc">&gt;</span><span class="dv">1</span>){</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levelplot</span>(<span class="fu">t</span>(Final_O[<span class="fu">nrow</span>(Final_O)<span class="sc">:</span><span class="dv">1</span>,]),</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">col.regions=</span><span class="fu">palf</span>(<span class="dv">100</span>), <span class="at">xlab =</span> <span class="cn">NULL</span>, <span class="at">ylab =</span> <span class="cn">NULL</span>, <span class="at">colorkey =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">main =</span> <span class="fu">list</span>(<span class="fu">paste0</span>(<span class="st">&quot;Results table ordered by block membership for season: &quot;</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                             season), <span class="at">cex=</span> <span class="dv">2</span>),</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">scales =</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="at">alternating=</span><span class="dv">1</span>), <span class="at">x=</span><span class="fu">list</span>(<span class="at">cex=</span><span class="dv">1</span>),<span class="at">y=</span><span class="fu">list</span>(<span class="at">cex=</span><span class="fl">0.8</span>)),</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel =</span> <span class="cf">function</span>(...){</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">panel.levelplot</span>(...)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            <span class="fu">panel.abline</span>(<span class="at">h =</span> (<span class="dv">20</span><span class="sc">-</span>how_many_top)<span class="sc">+</span><span class="fl">0.5</span>, <span class="at">lw =</span> <span class="fl">2.5</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            <span class="fu">panel.abline</span>(<span class="at">v =</span> how_many_top<span class="fl">+0.5</span>, <span class="at">lw =</span><span class="fl">2.5</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>          })</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (K_estimated<span class="sc">&gt;</span><span class="dv">1</span>){</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levelplot</span>(<span class="fu">t</span>(Final_O[<span class="fu">nrow</span>(Final_O)<span class="sc">:</span><span class="dv">1</span>,]),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">col.regions=</span><span class="fu">palf</span>(<span class="dv">100</span>), <span class="at">xlab =</span> <span class="cn">NULL</span>, <span class="at">ylab =</span> <span class="cn">NULL</span>, <span class="at">colorkey =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">main =</span> <span class="fu">list</span>(<span class="fu">paste0</span>(<span class="st">&quot;Results table ordered by block membership for season: &quot;</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                             season), <span class="at">cex=</span> <span class="dv">2</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">scales =</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="at">alternating=</span><span class="dv">1</span>), <span class="at">x=</span><span class="fu">list</span>(<span class="at">cex=</span><span class="dv">1</span>),<span class="at">y=</span><span class="fu">list</span>(<span class="at">cex=</span><span class="fl">0.8</span>)),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel =</span> <span class="cf">function</span>(...){</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">panel.levelplot</span>(...)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            <span class="fu">panel.abline</span>(<span class="at">h =</span> (N<span class="sc">-</span>how_many_top)<span class="sc">+</span><span class="fl">0.5</span>, <span class="at">lw =</span> <span class="fl">2.5</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            <span class="fu">panel.abline</span>(<span class="at">v =</span> how_many_top<span class="fl">+0.5</span>, <span class="at">lw =</span><span class="fl">2.5</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>          })</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 </main>

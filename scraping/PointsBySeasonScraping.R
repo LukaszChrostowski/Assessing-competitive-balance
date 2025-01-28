@@ -5,9 +5,14 @@ library(netstat)
 
 # start the server
 
-rs_driver_object <- rsDriver(browser = 'chrome',
-                             chromever = "106.0.5249.21",
-                             verbose = FALSE,
+# rs_driver_object <- rsDriver(browser = 'chrome',
+#                              chromever = "106.0.5249.21",
+#                              verbose = FALSE,
+#                              port = free_port())
+
+rs_driver_object <- rsDriver(browser = "firefox",
+                             #verbose = FALSE,
+                             #chromever = "131.0.6778.265", # the lastest
                              port = free_port())
 
 # create a client object
@@ -42,7 +47,10 @@ urls <- list("https://www.wyniki.pl/pko-bp-ekstraklasa-1998-1999/#/YR3njUNd/tabl
              "https://www.wyniki.pl/pko-bp-ekstraklasa-2018-2019/#/dhoVcL5r/table/overall",
              "https://www.wyniki.pl/pko-bp-ekstraklasa-2019-2020/#/v5p2SRke/table/overall",
              "https://www.wyniki.pl/pko-bp-ekstraklasa-2020-2021/#/0YeuAKmU/table/overall",
-             "https://www.wyniki.pl/pko-bp-ekstraklasa-2021-2022/#/noYKsAu8/table/overall")
+             "https://www.wyniki.pl/pko-bp-ekstraklasa-2021-2022/#/noYKsAu8/table/overall",
+             "https://www.wyniki.pl/pko-bp-ekstraklasa-2022-2023/#/4fofM1vn/table/overall",
+             "https://www.wyniki.pl/pko-bp-ekstraklasa-2023-2024/#/EsvRI4zf/table/overall",
+             "https://www.wyniki.pl/pko-bp-ekstraklasa/#/Qu6CIhxL/table/overall")
 
 ### by loop ###
 points <- c()
@@ -51,7 +59,7 @@ team <- c()
 
 for (i in 1:length(urls)) { # without season 01/02
 
-  remDr$navigate(urls[[i]])
+  remDr$navigate(urls[[1]])
 
   #cookies <- remDr$findElement(using = "xpath", '//*[@id="onetrust-reject-all-handler"]')
   #cookies$clickElement()
@@ -77,9 +85,10 @@ for (i in 1:length(urls)) { # without season 01/02
 
 seasons <- c("98/99", "99/00", "00/01", "02/03", "03/04", "04/05", "05/06", "06/07",
              "07/08", "08/09", "09/10", "10/11", "11/12", "12/13", "13/14", "14/15",
-             "15/16", "16/17", "17/18", "18/19", "19/20", "20/21", "21/22")
+             "15/16", "16/17", "17/18", "18/19", "19/20", "20/21", "21/22", "22/23",
+             "23/24", "24/25")
 
-season <- rep(seasons, c(rep(16, 4), rep(14, 2), rep(16, 16), rep(18, 1)))
+season <- rep(seasons, c(rep(16, 4), rep(14, 2), rep(16, 16), rep(18, 4)))
 
 DFF <- data.frame(team = team,
                   place = place,

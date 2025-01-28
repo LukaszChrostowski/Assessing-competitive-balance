@@ -536,7 +536,7 @@ ssn12_13 <- data.frame(home = home,
 
 #### saving files
 
-ssn12_13 <- scrapedData2012and2013%>%  as.data.frame() %>%  select(c(`Gole Gospodarz`, `Gole Gość`, `Gospodarz`, `Gość`, `Wynik`))
+ssn12_13 <- scrapedData2012and2013 %>%  as.data.frame() %>%  select(c(`Gole Gospodarz`, `Gole Gość`, `Gospodarz`, `Gość`, `Wynik`))
 ssn13_14 <- scrapedData2013and2014 %>%  as.data.frame() %>%  select(c(`Gole Gospodarz`, `Gole Gość`, `Gospodarz`, `Gość`, `Wynik`))
 ssn14_15 <- scrapedData2014and2015 %>%  as.data.frame() %>%  select(c(`Gole Gospodarz`, `Gole Gość`, `Gospodarz`, `Gość`, `Wynik`))
 ssn15_16 <- scrapedData2015and2016 %>%  as.data.frame() %>%  select(c(`Gole Gospodarz`, `Gole Gość`, `Gospodarz`, `Gość`, `Wynik`))
@@ -546,6 +546,9 @@ ssn18_19 <- scrapedData2018and2019 %>%  as.data.frame() %>%  select(c(`Gole Gosp
 ssn19_20 <- scrapedData2019and2020 %>%  as.data.frame() %>%  select(c(`Gole Gospodarz`, `Gole Gość`, `Gospodarz`, `Gość`, `Wynik`))
 ssn20_21 <- scrapedData2020and2021 %>%  as.data.frame() %>%  select(c(`Gole Gospodarz`, `Gole Gość`, `Gospodarz`, `Gość`, `Wynik`))
 ssn21_22 <- scrapedData2021and2022 %>%  as.data.frame() %>%  select(c(`Gole Gospodarz`, `Gole Gość`, `Gospodarz`, `Gość`, `Wynik`))
+ssn22_23 <- scrapedData2022and2023 %>%  as.data.frame() %>%  select(c(`Gole Gospodarz`, `Gole Gość`, `Gospodarz`, `Gość`, `Wynik`))
+ssn23_24 <- scrapedData2023and2024 %>%  as.data.frame() %>%  select(c(`Gole Gospodarz`, `Gole Gość`, `Gospodarz`, `Gość`, `Wynik`))
+ssn24_25 <- scrapedData2024and2025 %>%  as.data.frame() %>%  select(c(`Gole Gospodarz`, `Gole Gość`, `Gospodarz`, `Gość`, `Wynik`))
 
 
 colnames(ssn12_13) <- colnames(ssn00_01)
@@ -578,6 +581,15 @@ rownames(ssn20_21) <- 1:nrow(ssn20_21)
 colnames(ssn21_22) <- colnames(ssn00_01)
 rownames(ssn21_22) <- 1:nrow(ssn21_22)
 
+colnames(ssn22_23) <- colnames(ssn00_01)
+rownames(ssn22_23) <- 1:nrow(ssn22_23)
+
+colnames(ssn23_24) <- colnames(ssn00_01)
+rownames(ssn23_24) <- 1:nrow(ssn23_24)
+
+colnames(ssn24_25) <- colnames(ssn00_01)
+rownames(ssn24_25) <- 1:nrow(ssn24_25)
+
 ssn00_01 <- ssn00_01[-1:-2,]
 ssn01_02 <- ssn01_02[-1:-4, ]
 ssn02_03 <- ssn02_03[-1:-4, ]
@@ -609,9 +621,11 @@ save(ssn98_99,
      ssn18_19,
      ssn19_20,
      ssn20_21,
-     ssn21_22, file = "ssn.Rdata")
-
-save(ssn12_13, file = "ssn12_13.Rdata")
+     ssn21_22,
+     ssn22_23,
+     ssn_23_24,
+     ssn_24_25,
+     file = "ssn.Rdata")
 
 
 
